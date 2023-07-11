@@ -9,7 +9,7 @@
       {% endfor %}
     </ul>
     <ul class="contact-list">
-      {{ linklists.footer.title }}
+      <h4>{{ linklists.footer.title }}</h4>
       {% for link in linklists.footer.links %}
         <li>
           {% assign child_list_handle = link.title | handleize %}
@@ -25,12 +25,13 @@
       {% endfor %}
     </ul>
     <div class="about-us">
+      <h4>{{ 'general.about.title' | t }}</h4>
       <p>{{ 'general.about.description' | t }}</p>
     </div>
   </div>
   <div class="footer-bottom">
     {% assign copyright_date = 'now' | date: '%Y' %}
-    <span>{{ 'footer.bottom.copyright' | t: date: copyright_date }}</span>
+    <span class="copyright">{{ 'footer.bottom.copyright' | t: date: copyright_date }}</span>
     <div class="social-links">
       <a href="{{ footer.social.facebook_url | t }}" target="new">
         <img src="{{ 'facebook.svg' | asset_url }}" alt="{{ 'footer.social.alt' | t: social: 'facebook' }}">

@@ -1,0 +1,23 @@
+{% if cart.item_count > 0 %}
+  <p>{{ 'cart.filled.title' | t }}</p>
+  <form
+    action="/cart"
+    method="post"
+    novalidate>
+    <div class="cart-lines">
+      {% for item in cart.items %}
+        {% include 'line-item' %}
+      {% endfor %}
+    </div>
+
+    <div class="subtotal-line">
+
+      <p>{{ 'cart.filled.subtotal' | t }}</p>
+      <span class="price">{{ cart.total_price | money }}</span>
+      <button type="submit" name="checkout">{{ 'cart.filled.button' | t }}</button>
+    </div>
+  </form>
+{% else %}
+  <p class="cart-empty">{{ 'cart.empty.title' | t }}</p>
+  <a href="/" class="button">{{ 'cart.empty.button' | t }}</a>
+{% endif %}
