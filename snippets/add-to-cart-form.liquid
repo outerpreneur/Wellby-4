@@ -9,20 +9,21 @@
       <span class="option-title">
         {{ product.options.first }}
       </span>
+
       <div class="option-fieldset">
         {% for variant in product.variants %}
           <input
-            class="js-variant-radio"
+            class="variant-radio js-variant-radio"
             type="radio"
             name="id"
             id="variant-{{ forloop.index }}"
             value="{{ variant.id }}"
-            data-inventory-quantity="{{ variant.inventory_quantity }} {% unless variant.available %} disabled {% endunless %}">
+            data-inventory-quantity="{{ variant.inventory_quantity }}"
+            {% unless variant.available %}disabled{% endunless %}>
           <label for="variant-{{ forloop.index }}">{{ variant.title }}</label>
         {% endfor %}
       </div>
     </div>
-
   {% else %}
     <input
       type="hidden"
@@ -31,8 +32,11 @@
   {% endif %}
 
   <div class="option-row">
+
     <label class="option-title" for="Quantity">{{ 'product.form.quantity' | t }}</label>
+
     <div class="option-fieldset">
+
       <div class="visually-hidden">
         <input
           type="number"
@@ -41,23 +45,19 @@
           name="quantity"
           value="1"
           min="1"
-          {% if product.variants.size == 1 %}
-          max="{{ product.variants.first.inventory_quantity }}"
-          {% endif %}>
+          {% if product.variants.size == 1 %}max="{{ product.variants.first.inventory_quantity }}"{% endif %}>
       </div>
 
       <button
-        class="quantity-button minus js-quantity-button"
+        class="quantity-button js-quantity-button minus"
         type="button"
         disabled>
         &ndash;
       </button>
-
       <span class="quantity-text js-quantity-text">
         1
       </span>
-
-      <button class="quantity-button plus js-quantity-button" type="button">
+      <button class="quantity-button js-quantity-button plus" type="button">
         +
       </button>
     </div>
@@ -67,8 +67,5 @@
     type="submit"
     name="add"
     id="add-to-cart-button"
-    {% if product.variants.size > 1 %}
-    disabled
-    {% endif %}>Add to cart
-  </button>
+    {% if product.variants.size > 1 %}disabled{% endif %}>Add to cart</button>
 </form>
