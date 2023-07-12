@@ -1,9 +1,11 @@
-<div class="index-top">
-  <h1>{{ 'general.shop.description' | t }}</h1>
-  <p>{{ 'general.shop.sub_description' | t }}</p>
-</div>
-{% for product in collections.frontpage.products limit: 4 %}
-  <div class="index-products">
-    {% include 'product-card' %}
+<div id="page-index">
+  <div class="index-top wrapper">
+    <h1>{{ 'general.shop.description' | t }}</h1>
+    <p>{{ 'general.shop.sub_description' | t }}</p>
   </div>
-{% endfor %}
+  {% for product in collections.frontpage.products limit: 4 %}
+    <div class="index-products wrapper">
+      {% include 'product-card' %}
+    </div>
+  {% endfor %}
+</div>
